@@ -1,2 +1,2 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-export const plugins = () => {};
+import "bootstrap-icons/font/bootstrap-icons.min.css"
