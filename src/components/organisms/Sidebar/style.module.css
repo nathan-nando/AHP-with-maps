@@ -6,8 +6,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 320px;
+    min-height: 100vh;
     background-color: var(--white-primary);
 }
 
@@ -16,10 +15,20 @@
     place-items: center;
     height: 120px;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-family: Raleway, sans-serif;
+    letter-spacing: 2px;
+    padding: 1%;
+    margin-top: 5vh;
+}
+
+.sidebarLogo p {
+    border: 2px solid var(--grey-primary);
+    border-radius: 10px;
+    padding: 15px 15px 15px 0px;
 }
 
 .sidebarMenu {
+    margin-top: 1vh;
     position: relative;
 }
 
@@ -29,7 +38,7 @@
     left: 50%;
     width: calc(100% - 40px);
     border-radius: 10px;
-    background-color: #308efe;
+    background-color: var(--green-primay);
     z-index: -1;
     transform: translateX(-50%);
     transition: 0.3s ease-in-out;
@@ -42,7 +51,7 @@
     place-content: flex-start;
     padding: 1rem 3rem;
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: bold;
     color: #555;
     transition: color 0.3s ease-in-out;
 }
@@ -61,4 +70,16 @@
 
 .sidebarMenuItemText {
 
+}
+
+.logoStylingLeft{
+    background-color: var(--blue-primary);
+    border-radius: 10px;
+    color: white;
+    padding: 22px;
+    font-weight: bold;
+}
+
+.logoStylingRight{
+    color: var(--blue-primary);
 }

@@ -34,7 +34,7 @@ export const sidebarItems:sidebar[] = [
     },
     {
         display: "Alternatives",
-        icon: <i className={"bi bi-inbox-fill"}></i>,
+        icon: <i className={"bi bi-geo-alt-fill"}></i>,
         to: "/alternatives",
         section: "alternatives"
     },
