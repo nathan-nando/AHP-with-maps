@@ -9,7 +9,6 @@ export const Sidebar: FC = (props) => {
     const [stepHeight, setStepHeight] = useState(0);
     const sidebarItemRef = React.useRef<HTMLDivElement>(null);
     const indicatorRef = React.useRef<HTMLDivElement>(null);
-    // const item = React.useRef<HTMLDivElement>(null);
 
     const location = useLocation();
 
@@ -20,7 +19,6 @@ export const Sidebar: FC = (props) => {
             setStepHeight(sidebarItem!.clientHeight);
         }, 50);
     },)
-
 
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[1]
