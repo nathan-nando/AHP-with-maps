@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: Lato, sans-serif;
+    font-family: Raleway, sans-serif;
 }
 
 .container-fluid {
@@ -8,8 +8,6 @@
 }
 
 :root {
-    --height-navbar: 50px;
-
     --white-primary: #fff;
     --white-warm: #F8F6F4;
 
@@ -20,7 +18,7 @@
     --green-soft10: #E5F9DB;
     --green-soft20: #A0D8B3;
 
-    --blue-primary: #526D82;
+    --blue-dark: #0E5E6F;
 
 }
 
@@ -34,6 +32,7 @@
     border-radius: 10px;
     margin: 2% 1% 2% 1%;
     min-height: 100vh;
+    padding: 2% 3% 3% 2%;
 }
 
 
@@ -41,13 +40,11 @@
     font-family: 'Lato';
     src: local('Lato'), url("../../assets/fonts/Lato/Lato-Regular.ttf");
 }
-
 @font-face {
     font-family: 'Lato';
     font-weight: bold;
     src: local('Lato'), url("../../assets/fonts/Lato/Lato-Bold.ttf");
 }
-
 @font-face {
     font-family: 'Lato';
     font-weight: 900;
@@ -58,9 +55,18 @@
     font-family: 'Raleway';
     src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-Regular.ttf");
 }
-
+@font-face {
+    font-family: 'Raleway';
+    font-weight: 400;
+    src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-SemiBold.ttf");
+}
 @font-face {
     font-family: 'Raleway';
     font-weight: bold;
     src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-Bold.ttf");
+}
+@font-face {
+    font-family: 'Raleway';
+    font-weight: 900;
+    src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-Black.ttf");
 }

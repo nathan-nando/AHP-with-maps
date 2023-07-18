@@ -21,12 +21,6 @@ export const sidebarItems:sidebar[] = [
         section: "criteria"
     },
     {
-        display: "Sub Criteria",
-        icon: <i className={"bi bi-stickies-fill"}></i>,
-        to: "/sub-criteria",
-        section: "sub-criteria"
-    },
-    {
         display: "Collections",
         icon: <i className={"bi bi-inboxes-fill"}></i>,
         to: "/collections",

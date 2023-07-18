@@ -1,18 +1,18 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {User} from "../../model/User";
 
-export type someType = {
-    a?: number | string;
-    b?: number;
-}
+// export type someType = {
+//     a?: number | string;
+//     b?: number;
+// }
 
-const initialSomeType: someType[] = [
-    {a: 0, b: 0},
-    {a: 1, b: 1},
-]
+// const initialSomeType: someType[] = [
+//     {a: 0, b: 0},
+//     {a: 1, b: 1},
+// ]
 
 export interface DanaPensiunState {
-    someData: someType[];
+    // someData: someType[];
     loading: boolean;
     error: string | null;
     user: User | null,
@@ -20,7 +20,7 @@ export interface DanaPensiunState {
 
 const initialState: DanaPensiunState = {
     user: null,
-    someData: initialSomeType,
+    // someData: initialSomeType,
     loading: false,
     error: null,
 };
@@ -40,9 +40,9 @@ const someSlice = createSlice({
     name: "some_slice",
     initialState,
     reducers: {
-        addSomeData: (state, action: PayloadAction<someType>) => {
-            state.someData.push(action.payload)
-        },
+        // addSomeData: (state, action: PayloadAction<someType>) => {
+        //     state.someData.push(action.payload)
+        // },
 
     },
     extraReducers: (builder) => {
@@ -57,6 +57,6 @@ const someSlice = createSlice({
     }
 });
 
-export const {addSomeData} = someSlice.actions;
+// export const {addSomeData} = someSlice.actions;
 
 export default someSlice.reducer;
