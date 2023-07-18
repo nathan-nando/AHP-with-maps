@@ -1,5 +1,7 @@
-import {FC} from "react";
+import React, {FC} from "react";
+export const Dashboard: FC = () => {
 
-export const Dashboard:FC = () =>{
-    return <div></div>
+    return <div style={{height: '100vh', width: '100%'}}>
+
+    </div>
 }

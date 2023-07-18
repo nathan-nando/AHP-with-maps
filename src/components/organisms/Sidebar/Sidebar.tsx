@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import styles from "./style.module.css"
 import {sidebarItems} from "./sidebarItems";
 import {Link, useLocation} from "react-router-dom";
-import {Col, Row} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 
 export const Sidebar: FC = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);

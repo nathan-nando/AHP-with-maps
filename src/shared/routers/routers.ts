@@ -5,7 +5,6 @@ import {FinalScores} from "../../features/FinalScores/FinalScores";
 import {Calculates} from "../../features/Calculates/Calculates";
 import {Alternatives} from "../../features/Alternatives/Alternatives";
 import {Collections} from "../../features/Collections/Collections";
-import {SubCriteria} from "../../features/SubCriteria/SubCriteria";
 import {Dashboard} from "../../features/Dashboard/Dashboard";
 
 export const routers = createBrowserRouter([
@@ -15,7 +14,6 @@ export const routers = createBrowserRouter([
     children: [
       { path: "/dashboard", Component: Dashboard},
       { path: "/criteria", Component: Criteria},
-      { path: "/sub-criteria", Component: SubCriteria},
       { path: "/collections", Component: Collections},
       { path: "/alternatives", Component: Alternatives},
       { path: "/calculates", Component: Calculates},
