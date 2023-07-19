@@ -11,14 +11,14 @@ import {User} from "../../model/User";
 //     {a: 1, b: 1},
 // ]
 
-export interface DanaPensiunState {
+export interface SomeState {
     // someData: someType[];
     loading: boolean;
     error: string | null;
     user: User | null,
 }
 
-const initialState: DanaPensiunState = {
+const initialState: SomeState = {
     user: null,
     // someData: initialSomeType,
     loading: false,
