@@ -6,6 +6,6 @@ type Props = {
     width?: number;
     height?: number;
 }
-export const Loading: FC = ({width = 200, height = 200,}: Props) => {
+export const Loading= ({width = 200, height = 200,}: Props) => {
     return <Image src={loading} width={width} height={height}/>
 }

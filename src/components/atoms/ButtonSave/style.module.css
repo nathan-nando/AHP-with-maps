@@ -1,0 +1,17 @@
+.btnPrimary{
+    font-weight: bold;
+    border: none;
+    background-color: #3f99e9;
+    width: 6vw;
+    height: 5vh;
+    position: absolute;
+    right: 4vw;
+}
+
+.btnPrimary:hover{
+    background-color: #4fa2eb;
+}
+
+.btnPrimary:focus{
+    background-color: #4fa2eb;
+}

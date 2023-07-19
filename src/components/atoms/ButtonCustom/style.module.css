@@ -1,0 +1,21 @@
+.btnPrimary{
+    font-weight: bold;
+    border: none;
+    background-color: #3f99e9;
+}
+
+.btnPrimary:hover{
+    background-color: #4fa2eb;
+}
+
+.btnPrimary:focus{
+    background-color: #4fa2eb;
+}
+
+.btnSecondary{
+
+}
+
+.btnDanger{
+
+}
