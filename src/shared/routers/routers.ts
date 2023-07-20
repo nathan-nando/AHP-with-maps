@@ -1,11 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
-import {Root} from "../../features/Root/Root";
-import {Criteria} from "../../features/Criteria/Criteria";
-import {FinalScores} from "../../features/FinalScores/FinalScores";
 import {Calculates} from "../../features/Calculates/Calculates";
 import {Alternatives} from "../../features/Alternatives/Alternatives";
-import {Collections} from "../../features/Collections/Collections";
-import {Dashboard} from "../../features/Dashboard/Dashboard";
+import {Root} from "../../features/Root/view/Root";
+import {Criteria} from "../../features/Criteria/view/Criteria";
+import {Dashboard} from "../../features/Dashboard/view/Dashboard";
+import {Collections} from "../../features/Collections/view/Collections";
+import {FinalScores} from "../../features/FinalScores/view/FinalScores";
 
 export const routers = createBrowserRouter([
   {

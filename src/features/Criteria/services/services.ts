@@ -1,6 +1,6 @@
-import {api} from "../../api/api";
-import {endpoint} from "../../api/endpoint";
-import {criteria} from "./slice";
+import {api} from "../../../api/api";
+import {endpoint} from "../../../api/endpoint";
+import {criteria} from "../../../domain/Criteria/model";
 
 class CriteriaServices {
     getCriteria() {
