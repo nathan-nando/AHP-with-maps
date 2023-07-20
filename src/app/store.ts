@@ -1,6 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import rootReducer from "../features/Root/store/slice";
 import criteriaReducer from "../features/Criteria/store/slice";
+import collectionReducer from "../features/Collections/store/slice";
 import {appLogger} from "../shared/logger/logger";
 
 
@@ -8,6 +9,7 @@ export const store = configureStore({
     reducer: {
         globalState: rootReducer,
         criteriaState: criteriaReducer,
+        collectionState: collectionReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}).concat(appLogger)
 });
