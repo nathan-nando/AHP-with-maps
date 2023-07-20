@@ -1,0 +1,15 @@
+.btnPrimary{
+    font-weight: bold;
+    border: none;
+    background-color: var(--blue-primary) !important;
+    min-width: 4vw;
+    height: 4vh;
+}
+
+.btnPrimary:hover{
+    background-color: #4fa2eb;
+}
+
+.btnPrimary:focus{
+    background-color: #4fa2eb;
+}

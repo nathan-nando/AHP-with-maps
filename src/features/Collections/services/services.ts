@@ -1,5 +1,7 @@
 import {api} from "../../../api/api";
 import {endpoint} from "../../../api/endpoint";
+import {requestCreateCollection} from "../../../domain/Collections/dto";
+import {collection} from "../../../domain/Collections/model";
 
 class CollectionsServices {
     getCollections() {
@@ -10,12 +12,16 @@ class CollectionsServices {
         return api.get(`${endpoint.collection}/${id}`)
     }
 
-    createCollections() {
-        return api.post(endpoint.collection)
+    createCollections(payload: requestCreateCollection) {
+        return api.post(endpoint.collection, payload)
     }
 
-    updateCollections() {
-        return api.patch(endpoint.collection)
+    updateCollections(payload: collection) {
+        return api.patch(endpoint.collection, payload)
+    }
+
+    deleteCollection(id:string){
+        return api.delete(`${endpoint.collection}/${id}`)
     }
 }
 

@@ -9,9 +9,9 @@
 }
 
 .btnPrimary:hover{
-    background-color: #4fa2eb;
+    background-color: #4fa2eb !important;
 }
 
 .btnPrimary:focus{
-    background-color: #4fa2eb;
+    background-color: #4fa2eb !important;
 }
