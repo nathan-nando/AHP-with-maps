@@ -1,21 +1,11 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
-import {criteriaServices} from "./services";
-import {RootState} from "../../app/store";
-
-export type criteria = {
-    pairwise?: number[][];
-    weights?: number[]
-}
-
-export type payloadCriteria = {
-    value: number;
-    indexRow: number;
-    indexCol: number;
-}
+import {criteria} from "../../../domain/Criteria/model";
+import {requestCriteria} from "../../../domain/Criteria/dto";
+import {checkConsistency, fetchCriteria, updateCriteria} from "./thunk";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export interface CriteriaState {
-    criteria: criteria
+    criteria: criteria;
     loading: boolean;
     consistencyRatio: boolean | null;
     error: any | AxiosError | null;
@@ -32,7 +22,7 @@ const slice = createSlice({
     name: "criteria_slice",
     initialState,
     reducers: {
-        changeValueCriteria(state, action: PayloadAction<payloadCriteria>) {
+        changeValueCriteria(state, action: PayloadAction<requestCriteria>) {
             state.criteria.pairwise![action.payload.indexRow][action.payload.indexCol] = action.payload.value
             state.criteria.pairwise![action.payload.indexCol][action.payload.indexRow] = parseFloat((1 / action.payload.value).toFixed(3))
         }
@@ -78,37 +68,6 @@ const slice = createSlice({
     }
 })
 
-export const fetchCriteria = createAsyncThunk('criteria/fetchCriteria', async (_, {rejectWithValue, dispatch}) => {
-    try {
-        const res = await criteriaServices.getCriteria();
-        return res.data
-    } catch (e) {
-        return rejectWithValue({data: e as AxiosError})
-    } finally {
-        await dispatch(checkConsistency())
-    }
-})
-
-export const updateCriteria = createAsyncThunk('criteria/updateCriteria', async (_, {getState, rejectWithValue, dispatch}) => {
-    const state = getState() as RootState;
-    try {
-        const res = await criteriaServices.updateCriteria({pairwise: state.criteriaState.criteria.pairwise})
-        return res.data;
-    } catch (e) {
-        return rejectWithValue({data: e as AxiosError})
-    } finally {
-        await  dispatch(checkConsistency())
-    }
-})
-
-export const checkConsistency = createAsyncThunk('criteria/checkConsistency', async (_, {rejectWithValue})=>{
-    try {
-        const res = await criteriaServices.checkConsistency()
-        return res.data;
-    } catch (e) {
-        return rejectWithValue({data: e as AxiosError})
-    }
-})
 
 export const {changeValueCriteria} = slice.actions
 export default slice.reducer

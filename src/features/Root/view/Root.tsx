@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Col, Container, Row} from "react-bootstrap";
-import "../../shared/plugins/plugins"
-import {Sidebar} from "../../components/organisms/Sidebar/Sidebar";
+import "../../../shared/plugins/plugins"
+import {Sidebar} from "../../../components/organisms/Sidebar/Sidebar";
 import {Outlet} from "react-router-dom";
 import styles from "./style.module.css";
 

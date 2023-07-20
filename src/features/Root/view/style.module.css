@@ -21,6 +21,7 @@
 
     --blue-dark: #0E5E6F;
     --blue-light: #6bb3f2;
+    --blue-primary : #3f99e9;
 
 }
 
@@ -40,35 +41,35 @@
 
 @font-face {
     font-family: 'Lato';
-    src: local('Lato'), url("../../assets/fonts/Lato/Lato-Regular.ttf");
+    src: local('Lato'), url("../../../assets/fonts/Lato/Lato-Regular.ttf");
 }
 @font-face {
     font-family: 'Lato';
     font-weight: bold;
-    src: local('Lato'), url("../../assets/fonts/Lato/Lato-Bold.ttf");
+    src: local('Lato'), url("../../../assets/fonts/Lato/Lato-Bold.ttf");
 }
 @font-face {
     font-family: 'Lato';
     font-weight: 900;
-    src: local('Lato'), url("../../assets/fonts/Lato/Lato-Black.ttf");
+    src: local('Lato'), url("../../../assets/fonts/Lato/Lato-Black.ttf");
 }
 
 @font-face {
     font-family: 'Raleway';
-    src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-Regular.ttf");
+    src: local("Raleway"), url("../../../assets/fonts/Raleway/Raleway-Regular.ttf");
 }
 @font-face {
     font-family: 'Raleway';
     font-weight: 400;
-    src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-SemiBold.ttf");
+    src: local("Raleway"), url("../../../assets/fonts/Raleway/Raleway-SemiBold.ttf");
 }
 @font-face {
     font-family: 'Raleway';
     font-weight: bold;
-    src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-Bold.ttf");
+    src: local("Raleway"), url("../../../assets/fonts/Raleway/Raleway-Bold.ttf");
 }
 @font-face {
     font-family: 'Raleway';
     font-weight: 900;
-    src: local("Raleway"), url("../../assets/fonts/Raleway/Raleway-Black.ttf");
+    src: local("Raleway"), url("../../../assets/fonts/Raleway/Raleway-Black.ttf");
 }
