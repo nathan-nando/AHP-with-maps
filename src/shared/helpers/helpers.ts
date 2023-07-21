@@ -13,3 +13,15 @@ export const titleTable =
         "Cakupan Rumah",
         "Aksesibilitas",
     ]
+
+export const titleTablePoint =
+    [
+            "No",
+            "Timbulan Sampah",
+            "Jarak TPA",
+            "Jarak Pemukiman",
+            "Jarak Sungai",
+            "Partisipasi Masyarakat",
+            "Cakupan Rumah",
+            "Aksesibilitas",
+    ]
