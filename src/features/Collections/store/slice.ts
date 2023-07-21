@@ -39,6 +39,10 @@ export const collectionSlice = createSlice({
 
         clearForm(state) {
             state.form = {name: "", description: ""}
+        },
+
+        clearSelectedCollection(state){
+            state.selectedCollection = {}
         }
     },
 
@@ -105,6 +109,6 @@ export const collectionSlice = createSlice({
     }
 })
 
-export const {handlerForm, clearForm, setUpdateForm} = collectionSlice.actions
+export const {handlerForm, clearForm, setUpdateForm, clearSelectedCollection} = collectionSlice.actions
 
 export default collectionSlice.reducer
