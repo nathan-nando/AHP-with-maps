@@ -1,4 +1,4 @@
-import {Button, Form, Modal, Table} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 import {AppDispatch, RootState} from "../../../app/store";
 import {useAppDispatch} from "../../../app/hooks";
 import {hideModal, modeModalToCreate, showModal} from "../../../features/Root/store/slice";
@@ -13,20 +13,22 @@ type props = {
     buttonTitle: string,
     children: ReactNode,
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+    withButton: boolean,
 }
-export const ModalCustom = ({modalTitle, buttonTitle, children, modalSize, onSubmit}: props) => {
+export const ModalCustom = ({modalTitle, buttonTitle, children, modalSize, onSubmit, withButton}: props) => {
     const state = useSelector((state: RootState) => state.globalState)
     const dispatch: AppDispatch = useAppDispatch();
 
 
     return <>
-        <Button variant="primary" className={styles.btnPrimary} onClick={() => {
+        {withButton ? <Button variant="primary" className={styles.btnPrimary} onClick={() => {
             dispatch(clearForm());
             dispatch(showModal());
             dispatch(modeModalToCreate());
         }}>
             {buttonTitle}
-        </Button>
+        </Button> : <div></div>}
+
         <Modal show={state.showModal} onHide={() => dispatch(hideModal())} animation={true} size={modalSize}>
             <Modal.Header closeButton>
                 <Modal.Title>{modalTitle}</Modal.Title>

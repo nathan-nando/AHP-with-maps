@@ -56,8 +56,6 @@ export const Collections: FC = () => {
 
         dispatch(hideModal())
         dispatch(clearForm())
-
-
     }
 
 
@@ -73,6 +71,7 @@ export const Collections: FC = () => {
         <div className={"mt-4"}>
 
             <ModalCustom
+                withButton={true}
                 modalTitle={globalState.modeModal === "create" ? "Menambah Collections" : "Mengedit Collections"}
                 buttonTitle={"Tambah Collections"} onSubmit={handlerSubmit}
                 modalSize={"lg"}>
