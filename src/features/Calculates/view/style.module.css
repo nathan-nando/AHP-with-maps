@@ -1,0 +1,9 @@
+.active{
+    background-color: #aad4fb;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.hover:hover{
+    font-weight: bold;
+}

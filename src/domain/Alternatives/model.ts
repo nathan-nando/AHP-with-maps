@@ -1,3 +1,5 @@
+import {score} from "../Scores/model";
+
 export type alternative = {
     id?:string,
     cakupan_rumah?: number,
@@ -10,4 +12,5 @@ export type alternative = {
     name?: string,
     partisipasi_masyarakat?: number,
     timbulan_sampah?: string
+    scores?: score[]
 }

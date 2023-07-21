@@ -1,5 +1,5 @@
 import styles from "./style.module.css"
-import {Badge, Col, Row} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 
 
 type props = {
