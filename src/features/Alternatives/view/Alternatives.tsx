@@ -14,7 +14,13 @@ import {
     fetchCollections,
 } from "../../Collections/store/thunk";
 import {clearSelectedCollection} from "../../Collections/store/slice";
-import {createAlternative, deleteAlternative, fetchAlternativeByID, fetchAlternatives} from "../store/thunk";
+import {
+    createAlternative,
+    deleteAlternative,
+    fetchAlternativeByID,
+    fetchAlternatives,
+    updateAlternative
+} from "../store/thunk";
 import {titleTable} from "../../../shared/helpers/helpers";
 import {hideModal, modeModalToCreate, modeModalToUpdate, showModal} from "../../Root/store/slice";
 import {ModalCustom} from "../../../components/organisms/ModalCustom/ModalCustom";
@@ -45,8 +51,8 @@ export const Alternatives: FC = () => {
         dispatch(fetchCollections())
     }, [dispatch])
 
-    const handlerUpdate = (id: string) => {
-        dispatch(fetchAlternativeByID(id))
+    const handlerUpdate = async (id: string) => {
+        await dispatch(fetchAlternativeByID(id))
         dispatch(modeModalToUpdate())
         dispatch(showModal())
     }
@@ -54,26 +60,34 @@ export const Alternatives: FC = () => {
     const handlerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (globalState.modeModal === "create") {
-            console.log(state.form.aksesibilitas)
-            console.log(state.form.jarakPemukiman)
-            console.log(state.form.jarakSungai)
             await dispatch(createAlternative({
                 aksesibilitas: state.form.aksesibilitas,
-                cakupan_rumah: state.form.cakupanRumah,
-                jarak_pemukiman: state.form.jarakPemukiman,
-                jarak_sungai: state.form.jarakSungai,
-                jarak_tpa: state.form.jarakTPA,
+                cakupan_rumah: state.form.cakupan_rumah,
+                jarak_pemukiman: state.form.jarak_pemukiman,
+                jarak_sungai: state.form.jarak_sungai,
+                jarak_tpa: state.form.jarak_tpa,
                 latitude: state.marker.lat,
                 longitude: state.marker.lng,
                 name: state.form.name,
-                partisipasi_masyarakat: state.form.partisipasiMasyarakat,
-                timbulan_sampah: state.form.timbulanSampah,
+                partisipasi_masyarakat: state.form.partisipasi_masyarakat,
+                timbulan_sampah: state.form.timbulan_sampah,
                 id: collectionState.selectedCollection!.id
             }))
         } else {
-
+            await dispatch(updateAlternative({
+                id: state.selectedAlternatives!.id,
+                name: state.form!.name,
+                cakupan_rumah: state.form!.cakupan_rumah,
+                timbulan_sampah: state.form!.timbulan_sampah,
+                longitude: state.marker.lng,
+                latitude: state.marker.lat,
+                aksesibilitas: state.form!.aksesibilitas,
+                jarak_pemukiman: state.form!.jarak_pemukiman,
+                partisipasi_masyarakat: state.form!.partisipasi_masyarakat,
+                jarak_tpa: state.form!.jarak_tpa,
+                jarak_sungai: state.form!.jarak_sungai,
+            }))
         }
-
         dispatch(hideModal())
         dispatch(clearForm())
     }
@@ -89,7 +103,8 @@ export const Alternatives: FC = () => {
                         await dispatch(fetchCollectionByID(collection.id!));
                         await dispatch(fetchAlternatives(collection.id!));
                         dispatch(clearMarker())
-                    }} className={`${collectionState.selectedCollection!.id === collection.id ? styles.active : "" } ${styles.hover}`}>
+                    }}
+                                className={`${collectionState.selectedCollection!.id === collection.id ? styles.active : ""} ${styles.hover}`}>
                         <SideCollection text={collection.name!} totalChildren={collectionState.collections.length}/>
                     </div>
                 })}
@@ -105,10 +120,11 @@ export const Alternatives: FC = () => {
                             center={center}
                             zoom={13}
                             mapContainerClassName={`${styles.mapContainer} mx-auto`}
-                            onClick={(e) => {
-                                dispatch(modeModalToCreate())
-                                dispatch(setMarker({lat: e.latLng?.lat(), lng: e.latLng?.lng(),}))
-                                dispatch(showModal())
+                            onClick={async (e) => {
+                                await dispatch(clearForm())
+                                await dispatch(modeModalToCreate())
+                                await dispatch(setMarker({lat: e.latLng?.lat(), lng: e.latLng?.lng(),}))
+                                await dispatch(showModal())
                             }}
                         >
                             {state.alternatives.map((a, index) => {
@@ -121,7 +137,8 @@ export const Alternatives: FC = () => {
                                     lat: a.latitude!,
                                     lng: a.longitude!
                                 }}>
-                                    <div><p className={"fw-bold"} style={{fontSize: 18}}>{a.name}</p><p>Lat: {a.latitude}</p><p>Lng: {a.longitude}</p></div>
+                                    <div><p className={"fw-bold"} style={{fontSize: 18}}>{a.name}</p>
+                                        <p>Lat: {a.latitude}</p><p>Lng: {a.longitude}</p></div>
                                 </InfoWindow> : <div></div>} </Marker>
                             })}
                             {Object.keys(state.marker).length === 0 ? <div></div> : <Marker position={{
@@ -150,7 +167,7 @@ export const Alternatives: FC = () => {
                             {state.alternatives.map((alternative, index) => {
                                 return <tr>
                                     {/*<td>{alternative}</td>*/}
-                                    <td width={70}>{index}</td>
+                                    <td width={70}>{index + 1}</td>
                                     <td>{alternative.name}</td>
                                     <td>{alternative.timbulan_sampah}</td>
                                     <td>{alternative.jarak_tpa}</td>
@@ -188,14 +205,14 @@ export const Alternatives: FC = () => {
                             <Form.Control type="text" onChange={(e) => {
                                 dispatch(handlerForm({name: e.target.value}))
                             }} placeholder="Masukkan nama alternative"
-                                          value={state.form.name}/>
+                                          value={state.form!.name}/>
                         </Form.Group>
 
                         <Form.Group className={"mb-3"}>
                             <Form.Label>Timbulan Sampah</Form.Label>
-                            <Form.Select onChange={(e) => {
+                            <Form.Select value={state.form!.timbulan_sampah} onChange={(e) => {
                                 console.log(e.target.value)
-                                dispatch(handlerForm({timbulanSampah: e.target.value}))
+                                dispatch(handlerForm({timbulan_sampah: e.target.value}))
                             }}>
                                 {optionTimbulanSampah.map((o, index) => {
                                     return <option value={o.value} disabled={o.disabled}
@@ -206,8 +223,8 @@ export const Alternatives: FC = () => {
 
                         <Form.Group className={"mb-3"}>
                             <Form.Label>Jarak TPA</Form.Label>
-                            <Form.Select onChange={(e) => {
-                                dispatch(handlerForm({jarakTPA: e.target.value}))
+                            <Form.Select value={state.form!.jarak_tpa} onChange={(e) => {
+                                dispatch(handlerForm({jarak_tpa: e.target.value}))
                             }}>
                                 {optionJarakTPA.map((o, index) => {
                                     return <option value={o.value} disabled={o.disabled}
@@ -220,14 +237,14 @@ export const Alternatives: FC = () => {
                             <Form.Label>Jarak Pemukiman</Form.Label>
                             <Form.Control type={"number"} min={0} max={500}
                                           placeholder={"Jarak pemukiman 0m - 500m"} onChange={(e) => {
-                                dispatch(handlerForm({jarakPemukiman: Number(e.target.value)}))
-                            }} value={state.form.jarakPemukiman}></Form.Control>
+                                dispatch(handlerForm({jarak_pemukiman: Number(e.target.value)}))
+                            }} value={state.form!.jarak_pemukiman}></Form.Control>
                         </Form.Group>
 
                         <Form.Group className={"mb-3"}>
                             <Form.Label>Jarak Sungai</Form.Label>
-                            <Form.Select onChange={(e) => {
-                                dispatch(handlerForm({jarakSungai: e.target.value}))
+                            <Form.Select value={state.form!.jarak_sungai} onChange={(e) => {
+                                dispatch(handlerForm({jarak_sungai: e.target.value}))
                             }}>
                                 {optionJarakSungai.map((o, index) => {
                                     return <option value={o.value} disabled={o.disabled}
@@ -240,21 +257,21 @@ export const Alternatives: FC = () => {
                             <Form.Label>Partisipasi Masyarakat</Form.Label>
                             <Form.Control type={"number"} min={0} max={100}
                                           placeholder={"Partisipasi Masyarakat 0% - 100%"} onChange={(e) => {
-                                dispatch(handlerForm({partisipasiMasyarakat: Number(e.target.value)}))
-                            }} value={state.form.partisipasiMasyarakat}></Form.Control>
+                                dispatch(handlerForm({partisipasi_masyarakat: Number(e.target.value)}))
+                            }} value={state.form!.partisipasi_masyarakat}></Form.Control>
                         </Form.Group>
 
                         <Form.Group className={"mb-3"}>
                             <Form.Label>Cakupan Rumah</Form.Label>
                             <Form.Control type={"number"} min={0} max={200}
                                           placeholder={"Cakupan Rumah 0 - 200"} onChange={(e) => {
-                                dispatch(handlerForm({cakupanRumah: Number(e.target.value)}))
-                            }} value={state.form.cakupanRumah}></Form.Control>
+                                dispatch(handlerForm({cakupan_rumah: Number(e.target.value)}))
+                            }} value={state.form!.cakupan_rumah}></Form.Control>
                         </Form.Group>
 
                         <Form.Group className={"mb-3"}>
                             <Form.Label>Aksesibilitas</Form.Label>
-                            <Form.Select onChange={(e) => {
+                            <Form.Select value={state.form!.aksesibilitas} onChange={(e) => {
                                 dispatch(handlerForm({aksesibilitas: e.target.value}))
                             }}>
                                 {optionAksesibilitas.map((o, index) => {

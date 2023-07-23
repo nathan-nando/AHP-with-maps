@@ -15,9 +15,9 @@ export const optionTimbulanSampah: inputOption[] = [
     {value: "jaringan jalan", text: "Jaringan Jalan"},
     {value: "perumahan", text: "Perumahan"},
     {value: "fasilitas komersial", text: "Fasilitas Komersial"},
-    {value: "fasilitas Umum", text: "Fasilitas Umum"},
-    {value: "fasilitas Sosial", text: "Fasilitas Sosial"},
-    {value: "ruang Terbuka", text: "Ruang Terbuka"},
+    {value: "fasilitas umum", text: "Fasilitas Umum"},
+    {value: "fasilitas sosial", text: "Fasilitas Sosial"},
+    {value: "ruang terbuka", text: "Ruang Terbuka"},
 ];
 
 export const optionJarakSungai: inputOption[] = [
@@ -49,15 +49,15 @@ export const optionJarakTPA = [
         disabled: true,
     },
     {
-        value: "Alternatif berada di jangkauan layanan TPA",
+        value: "alternatif berada di jangkauan layanan tpa",
         text: "Alternatif berada di jangkauan layanan TPA",
     },
     {
-        value: "Alternatif berada di batas terjauh jangkauan layanan TPA",
+        value: "alternatif berada di batas terjauh jangkauan layanan tpa",
         text: "Alternatif berada di batas terjauh jangkauan layanan TPA",
     },
     {
-        value: "Alternatif tidak berada di jangkauan TPA",
+        value: "alternatif tidak berada di jangkauan tpa",
         text: "Alternatif tidak berada di jangkauan TPA",
     },
 ];
@@ -70,17 +70,17 @@ export const optionAksesibilitas: inputOption[] = [
         disabled: true,
     },
     {
-        value: "Kondisi jalan bagus dan bisa dilewati kendaraan pengangkut sampah",
+        value: "kondisi jalan bagus dan bisa dilewati kendaraan pengangkut sampah",
         text: "Kondisi jalan bagus dan bisa dilewati kendaraan pengangkut sampah",
     },
     {
         value:
-            "Kondisi jalan bagus, tetapi tidak bisa dilewati kendaraan pengangkut sampah atau jalan tidak bagus, tetapi bisa dilewati kendaraan pengangkut sampah",
+            "kondisi jalan bagus, tetapi tidak bisa dilewati kendaraan pengangkut sampah atau jalan tidak bagus, tetapi bisa dilewati kendaraan pengangkut sampah",
         text: "Kondisi jalan bagus, tetapi tidak bisa dilewati kendaraan pengangkut sampah atau jalan tidak bagus, tetapi bisa dilewati kendaraan pengangkut sampah",
     },
     {
         value:
-            "Kondisi jalan tidak bagus dan tidak bisa dilewati kendaraan pengangkut sampah",
+            "kondisi jalan tidak bagus dan tidak bisa dilewati kendaraan pengangkut sampah",
         text: "Kondisi jalan tidak bagus dan tidak bisa dilewati kendaraan pengangkut sampah",
     },
 ];

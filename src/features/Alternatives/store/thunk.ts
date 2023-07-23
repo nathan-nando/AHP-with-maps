@@ -35,12 +35,15 @@ export const createAlternative = createAsyncThunk('alternatives/create', async (
     }
 })
 
-export const updateAlternative = createAsyncThunk('alternatives/update', async (payload: alternative, {rejectWithValue}) => {
+export const updateAlternative = createAsyncThunk('alternatives/update', async (payload: alternative, {rejectWithValue, dispatch, getState}) => {
+    const state = getState() as RootState
     try {
         const res = await alternativeServices.updateAlternative(payload)
         return res.data.data
     } catch (e) {
         rejectWithValue({data: e as AxiosError})
+    } finally {
+        await dispatch(fetchAlternatives(state.collectionState.selectedCollection!.id!))
     }
 })
 
@@ -58,5 +61,6 @@ export const deleteAlternative = createAsyncThunk('alternatives/delete', async (
         rejectWithValue({data: e as AxiosError})
     } finally {
         await dispatch(fetchAlternatives(state.collectionState.selectedCollection!.id!))
+
     }
 })

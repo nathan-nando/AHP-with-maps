@@ -2,6 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 import {calculateServices} from "../services/services";
 import {RootState} from "../../../app/store";
+import {fetchAlternatives} from "../../Alternatives/store/thunk";
 import {fetchCollectionByID, fetchCollections} from "../../Collections/store/thunk";
 
 export const fetchPoint = createAsyncThunk('calculate/fetchPoint', async (id: string, {rejectWithValue}) => {
@@ -32,7 +33,8 @@ export const calculateScores = createAsyncThunk('calculate/calculateScores', asy
     } catch (e) {
         return  rejectWithValue({data: e as AxiosError})
     } finally {
-        await dispatch(fetchCollections)
         await dispatch(fetchCollectionByID(state.collectionState.selectedCollection!.id!))
+        await dispatch(fetchAlternatives(state.collectionState.selectedCollection!.id!))
+        await dispatch(getScores(state.collectionState.selectedCollection!.id!))
     }
 })

@@ -4,7 +4,7 @@ export type score = {
     alternative_id: string,
     cakupan_rumah: number,
     aksesibilitas: number,
-    jaraK_pemukiman: number,
+    jarak_pemukiman: number,
     jarak_sungai: number,
     jarak_tpa: number,
     latitude: number,
