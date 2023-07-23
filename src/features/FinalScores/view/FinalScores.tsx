@@ -65,7 +65,9 @@ export const FinalScores: FC = () => {
                     {collectionState.selectedCollection!.id ? <div>
                         {collectionState.selectedCollection!.final_score_is_calculated ? <div>
                                 <h5 className={"text-center mb-5"}>{collectionState.selectedCollection!.name}</h5>
-
+                                <div className={"mb-5"}>
+                                    <ButtonCustom text={"Hitung ulang"} onClick={handlerStartCalculate}/>
+                                </div>
                                 {isLoaded && state.finalScore.length > 0 ? <div><GoogleMap
                                     options={{draggableCursor: "crosshair"}}
                                     zoom={12}
@@ -79,7 +81,7 @@ export const FinalScores: FC = () => {
                                             <Marker position={{lat: a.latitude!, lng: a.longitude!,}}><InfoWindow
                                                 position={{lat: a.latitude!, lng: a.longitude!,}}>
                                                 <div>
-                                                    <h5>Rank {index+1}</h5>
+                                                    <h5>Rank {index + 1}</h5>
                                                     <p>{a.name}</p>
                                                     <p>Lat: {a.latitude}</p>
                                                     <p>Long: {a.latitude}</p>
@@ -116,7 +118,7 @@ export const FinalScores: FC = () => {
                                 </div>}
                             </div> :
                             <div className={"bg-light col-lg-6 p-5 rounded"}>
-                                <h5 className={"mb-4"}>Belum dilakukan perhitungan</h5>
+                                <h5 className={"mb-4"}>Belum dilakukan perhitungan hasil akhir</h5>
                                 <ButtonCustom text={"Mulai perhitungan"} onClick={handlerStartCalculate}/>
                             </div>}
 

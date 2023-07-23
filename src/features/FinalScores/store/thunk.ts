@@ -4,6 +4,7 @@ import {AxiosError} from "axios";
 import {finalScoreServices} from "../services/services";
 import {fetchCollectionByID, fetchCollections} from "../../Collections/store/thunk";
 import {RootState} from "../../../app/store";
+import {fetchAlternatives} from "../../Alternatives/store/thunk";
 
 export const getFinalScores = createAsyncThunk('final_score/getFinalScore', async (id: string, {rejectWithValue}) => {
     try {
@@ -22,7 +23,8 @@ export const calculateFinalScores = createAsyncThunk('final_score/calculate', as
     } catch (e) {
         return rejectWithValue({data: e as AxiosError})
     } finally {
-        await dispatch(fetchCollections)
         await dispatch(fetchCollectionByID(state.collectionState.selectedCollection!.id!))
+        await dispatch(fetchAlternatives(state.collectionState.selectedCollection!.id!))
+        await dispatch(getFinalScores(state.collectionState.selectedCollection!.id!))
     }
 })

@@ -21,8 +21,8 @@ export const ModalCustom = ({modalTitle, buttonTitle, children, modalSize, onSub
 
 
     return <>
-        {withButton ? <Button variant="primary" className={styles.btnPrimary} onClick={() => {
-            dispatch(clearForm());
+        {withButton ? <Button variant="primary" className={styles.btnPrimary} onClick={async () => {
+            await dispatch(clearForm());
             dispatch(showModal());
             dispatch(modeModalToCreate());
         }}>

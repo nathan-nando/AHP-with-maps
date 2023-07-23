@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 import {checkConsistency} from "../../Criteria/store/thunk";
-import {calculateScores, fetchPoint} from "./thunk";
+import {calculateScores, fetchPoint, getScores} from "./thunk";
 import {score} from "../../../domain/Scores/model";
 import {alternative} from "../../../domain/Alternatives/model";
 
@@ -33,6 +33,19 @@ export const slice = createSlice({
         builder.addCase(fetchPoint.rejected, (state,action) => {
             state.loading = false;
             state.error = action.payload
+        })
+
+        builder.addCase(getScores.pending, (state) => {
+            state.loading = true;
+        })
+        builder.addCase(getScores.fulfilled, (state, action) => {
+            state.loading = false
+            state.alternative = action.payload;
+        });
+        builder.addCase(getScores.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+
         })
 
         builder.addCase(calculateScores.pending, (state) => {

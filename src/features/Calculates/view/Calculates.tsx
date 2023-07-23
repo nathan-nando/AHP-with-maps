@@ -11,18 +11,15 @@ import {AppDispatch, RootState} from "../../../app/store";
 import {useAppDispatch} from "../../../app/hooks";
 import {clearSelectedCollection} from "../../Collections/store/slice";
 import {Loading} from "../../../components/atoms/Loading/Loading";
-import {titleTable, titleTablePoint} from "../../../shared/helpers/helpers";
+import {titleTable} from "../../../shared/helpers/helpers";
 import {HintEmptyCollection} from "../../../components/moleculs/HintEmptyCollection/HintEmptyCollection";
 import {fetchCriteria} from "../../Criteria/store/thunk";
-import {calculateScores, fetchPoint} from "../store/thunk";
-import {forEach} from "react-bootstrap/ElementChildren";
-import {ButtonSave} from "../../../components/atoms/ButtonSave/ButtonSave";
+import {calculateScores, fetchPoint, getScores} from "../store/thunk";
 import {ButtonCustom} from "../../../components/atoms/ButtonCustom/ButtonPrimary";
 
 export const Calculates: FC = () => {
     const collectionState = useSelector((state: RootState) => state.collectionState)
 
-    const globalState = useSelector((state: RootState) => state.globalState)
     const criteriaState = useSelector((state: RootState) => state.criteriaState)
     const alternativeState = useSelector((state: RootState) => state.alternativeState)
     const state = useSelector((state: RootState) => state.calculateState)
@@ -35,7 +32,7 @@ export const Calculates: FC = () => {
         dispatch(fetchCriteria())
     }, [dispatch])
 
-    const handlerStartCalculate = ()=>{
+    const handlerStartCalculate = () => {
         dispatch(calculateScores(collectionState.selectedCollection!.id!))
 
     }
@@ -47,9 +44,10 @@ export const Calculates: FC = () => {
                 <p>List Collections</p>
                 {collectionState.collections.map((collection, index) => {
                     return <div key={collection.id} onClick={async () => {
-                        await dispatch(fetchCollectionByID(collection.id!));
-                        await dispatch(fetchAlternatives(collection.id!));
+                        await dispatch(fetchCollectionByID(collection.id!))
+                        dispatch(fetchAlternatives(collection.id!));
                         await dispatch(fetchPoint(collection.id!));
+                        await dispatch(getScores(collection.id!))
                         dispatch(clearMarker())
                     }}
                                 className={`${collectionState.selectedCollection!.id === collection.id ? styles.active : ""} ${styles.hover}`}>
@@ -67,7 +65,7 @@ export const Calculates: FC = () => {
                             <div className={"text-center"}><Loading width={400} height={400}></Loading></div> :
                             <div className={"col-lg-12 mt-4"}>
                                 <div className={"mb-4"}>
-                                <ButtonCustom text={"Hitung ulang"} onClick={handlerStartCalculate}/>
+                                    <ButtonCustom text={"Hitung ulang"} onClick={handlerStartCalculate}/>
                                 </div>
                                 <div className={"bg-light p-4 mb-3 rounded"} style={{fontSize: 14}}>
                                     <h5 className={"text-left"}>Langkah Pertama</h5>
@@ -131,6 +129,7 @@ export const Calculates: FC = () => {
                                                     return <tr>
                                                         <td>{index + 1}</td>
                                                         <td>{alternativeState.alternatives[index].name}</td>
+                                                        {/*<td>{index}</td>*/}
                                                         {point.map((p, index) => {
                                                             return <td key={index}>{p}</td>
                                                         })}
@@ -140,49 +139,91 @@ export const Calculates: FC = () => {
                                             </Table>
                                         </div>
                                     </div>}
+
+                                {criteriaState.loading ?
+                                    <div className={"text-center"}><Loading width={400} height={400}></Loading></div> :
+                                    <div className={"col-lg-12 mt-5"}>
+                                        <div className={"bg-light p-4 mb-3 rounded"} style={{fontSize: 14}}>
+                                            <h5 className={"text-left"}>Langkah ketiga</h5>
+                                            <ul>
+                                                <li>Mendapatkan nilai bobot kriteria dari perhitungan matriks pada halaman
+                                                    kriteria
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div style={{overflowY: "scroll", height: "50vh", display: "block"}}
+                                             className={"shadow-sm p-4 border"}>
+                                            <h5 className={"mb-4"}>Tabel Kriteria</h5>
+                                            <Table bordered>
+                                                <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Criteria</th>
+                                                    <th>Bobot Criteria</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {criteriaState.criteria.weights!.map((weight, index) => {
+                                                    return <tr>
+                                                        <td>{index + 1}</td>
+                                                        <td>{titleTable[index + 2]}</td>
+                                                        <td>{weight}</td>
+                                                    </tr>
+                                                })}
+                                                </tbody>
+                                            </Table>
+                                        </div>
+                                    </div>
+                                }
+
+                                {state.loading ?
+                                    <div className={"text-center"}><Loading width={400} height={400}></Loading></div> : <div className={"col-lg-12 mt-5"}>
+                                        <div className={"bg-light p-4 mb-3 rounded"} style={{fontSize: 14}}>
+                                            <h5 className={"text-left"}>Langkah Keempat</h5>
+                                            <ul>
+                                                <li>Nilai bobot kriteria dikali dengan hasil konversi nilai alternatif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div style={{overflowY: "scroll", height: "50vh", display: "block"}}
+                                             className={"shadow-sm p-4 border"}>
+                                            <h5 className={"mb-4"}>Tabel scores</h5>
+                                            <Table bordered>
+                                                <thead>
+                                                <tr>
+                                                    {titleTable.map((title, index) => {
+                                                        return <th>{title}</th>
+                                                    })}
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {state.alternative.map((a, index)=>{
+                                                    return <tr>
+                                                        <td>{index + 1}</td>
+                                                        <td>{a.name}</td>
+                                                        <td>{a.scores!.timbulan_sampah}</td>
+                                                        <td>{a.scores!.jarak_tpa}</td>
+                                                        <td>{a.scores!.jarak_pemukiman}</td>
+                                                        <td>{a.scores!.jarak_sungai}</td>
+                                                        <td>{a.scores!.partisipasi_masyarakat}</td>
+                                                        <td>{a.scores!.cakupan_rumah}</td>
+                                                        <td>{a.scores!.aksesibilitas}</td>
+                                                    </tr>
+                                                })}
+                                                </tbody>
+                                            </Table>
+                                        </div>
+                                    </div>}
                             </div> : <div></div>}
 
 
-                            {criteriaState.loading ?
-                                <div className={"text-center"}><Loading width={400} height={400}></Loading></div> :
-                                <div className={"col-lg-12 mt-5"}>
-                                    <div className={"bg-light p-4 mb-3 rounded"} style={{fontSize: 14}}>
-                                        <h5 className={"text-left"}>Langkah ketiga</h5>
-                                        <ul>
-                                            <li>Mendapatkan nilai bobot kriteria dari perhitungan matriks pada halaman
-                                                kriteria
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div style={{overflowY: "scroll", height: "50vh", display: "block"}}
-                                         className={"shadow-sm p-4 border"}>
-                                        <h5 className={"mb-4"}>Tabel Kriteria</h5>
-                                        <Table bordered>
-                                            <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Criteria</th>
-                                                <th>Bobot Criteria</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {criteriaState.criteria.weights!.map((weight, index) => {
-                                                return <tr>
-                                                    <td>{index + 1}</td>
-                                                    <td>{titleTable[index + 2]}</td>
-                                                    <td>{weight}</td>
-                                                </tr>
-                                            })}
-                                            </tbody>
-                                        </Table>
-                                    </div>
-                                </div>
-                            }</div> : <div>
+                            </div> : <div>
                             <div className={"bg-light col-lg-6 p-5 rounded"}>
-                                <h5 className={"mb-4"}>Belum dilakukan perhitungan</h5>
+                                <h5 className={"mb-4"}>Belum dilakukan perhitungan score</h5>
                                 <ButtonCustom text={"Mulai perhitungan"} onClick={handlerStartCalculate}/>
                             </div>
                         </div>}
+
 
 
                     </div> : <HintEmptyCollection/>}

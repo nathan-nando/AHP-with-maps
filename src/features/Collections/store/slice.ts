@@ -65,8 +65,7 @@ export const collectionSlice = createSlice({
         builder.addCase(fetchCollectionByID.fulfilled, (state, action) => {
             state.loading = false;
             state.selectedCollection = action.payload;
-            state.form.name =state.selectedCollection!.name;
-            state.form.description =state.selectedCollection!.description;
+            state.form = state.selectedCollection!;
         })
         builder.addCase(fetchCollectionByID.rejected, (state, action) => {
             state.loading = false;

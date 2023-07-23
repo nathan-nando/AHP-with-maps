@@ -26,6 +26,7 @@ export const slice = createSlice({
         builder.addCase(getFinalScores.fulfilled, (state, action) => {
             state.loading = false
             state.finalScore = action.payload
+            state.finalScore.sort((a,b )=> b.final_scores!.final_score - a.final_scores!.final_score)
         });
         builder.addCase(getFinalScores.rejected, (state,action) => {
             state.loading = false;
