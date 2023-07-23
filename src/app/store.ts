@@ -4,6 +4,7 @@ import criteriaReducer from "../features/Criteria/store/slice";
 import collectionReducer from "../features/Collections/store/slice";
 import alternativeReducer from "../features/Alternatives/store/slice";
 import calculateReducer from "../features/Calculates/store/slice";
+import finalScoreReducer from "../features/FinalScores/store/slice";
 import {appLogger} from "../shared/logger/logger";
 
 
@@ -14,6 +15,7 @@ export const store = configureStore({
         collectionState: collectionReducer,
         alternativeState: alternativeReducer,
         calculateState: calculateReducer,
+        finalScoreState: finalScoreReducer,
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}).concat(appLogger)

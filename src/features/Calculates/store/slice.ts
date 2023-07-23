@@ -5,14 +5,14 @@ import {calculateScores, fetchPoint} from "./thunk";
 import {score} from "../../../domain/Scores/model";
 import {alternative} from "../../../domain/Alternatives/model";
 
-export interface CriteriaState {
+export interface CalculateState {
     alternative: alternative[]
     multiplyPoint: number[][];
     loading: boolean;
     error: any | AxiosError | null;
 }
 
-const initialState: CriteriaState = {
+const initialState: CalculateState = {
     alternative: [],
     multiplyPoint: [],
     loading: false,

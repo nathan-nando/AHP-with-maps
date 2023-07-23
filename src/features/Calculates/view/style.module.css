@@ -7,3 +7,8 @@
 .hover:hover{
     font-weight: bold;
 }
+
+.mapContainer{
+    /*display: grid;*/
+    height: 60vh;
+}

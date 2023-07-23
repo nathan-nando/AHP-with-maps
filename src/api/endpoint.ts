@@ -5,5 +5,5 @@ export const endpoint = {
     criteria: "ahp/criteria",
     point: "ahp/point/calculate",
     scores: "ahp/scores",
-    finalScores: "ahp/scores"
+    finalScores: "ahp/final_scores"
 }

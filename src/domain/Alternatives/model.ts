@@ -1,4 +1,5 @@
 import {score} from "../Scores/model";
+import {finalScore} from "../FinalScores/model";
 
 export type alternative = {
     id?:string,
@@ -12,5 +13,6 @@ export type alternative = {
     name?: string,
     partisipasi_masyarakat?: number,
     timbulan_sampah?: string
-    scores?: score[]
+    scores?: score
+    final_scores?: finalScore
 }
