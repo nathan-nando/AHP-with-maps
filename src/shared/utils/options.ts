@@ -12,12 +12,12 @@ export const optionTimbulanSampah: inputOption[] = [
         selected: true,
         disabled: true,
     },
-    {value: "jaringan jalan", text: "Jaringan Jalan"},
-    {value: "perumahan", text: "Perumahan"},
-    {value: "fasilitas komersial", text: "Fasilitas Komersial"},
-    {value: "fasilitas umum", text: "Fasilitas Umum"},
-    {value: "fasilitas sosial", text: "Fasilitas Sosial"},
-    {value: "ruang terbuka", text: "Ruang Terbuka"},
+    {value: "daerah di jalan protokol pusat kota", text: "Daerah di Jalan Protokol/ Pusat kota"},
+    {value: "daerah komersil", text: "Daerah Komersil"},
+    {value: "daerah perumahan teratur", text: "Daerah Perumahan Teratur"},
+    {value: "daerah industri", text: "Daerah Industri"},
+    {value: "jalan taman dan hutan kota", text: "Jalan, Taman, dan Hutan Kota"},
+    {value: "daerah perumahan tidak teratur", text: "Daerah Perumahan Tidak Teratur"},
 ];
 
 export const optionJarakSungai: inputOption[] = [
@@ -28,16 +28,24 @@ export const optionJarakSungai: inputOption[] = [
         disabled: true,
     },
     {
-        value: "lokasi memenuhi peli banjir",
-        text: "Lokasi memenuhi peli banjir",
+        value: "sangat layak",
+        text: "Sangat Layak",
     },
     {
-        value: "lokasi memenuhi sebagian peli banjir",
-        text: "Lokasi memenuhi sebagian peli banjir",
+        value: "layak",
+        text: "Layak",
     },
     {
-        value: "lokasi tidak memenuhi peli banjir",
-        text: "Lokasi tidak memenuhi peli banjir",
+        value: "cukup layak",
+        text: "Cukup Layak",
+    },
+    {
+        value: "kurang layak",
+        text: "Kurang Layak",
+    },
+    {
+        value: "tidak layak",
+        text: "Tidak Layak",
     },
 ];
 
@@ -49,16 +57,16 @@ export const optionJarakTPA = [
         disabled: true,
     },
     {
-        value: "alternatif berada di jangkauan layanan tpa",
-        text: "Alternatif berada di jangkauan layanan TPA",
+        value: "pelayanan intensif",
+        text: "Pelayanan intensif",
     },
     {
-        value: "alternatif berada di batas terjauh jangkauan layanan tpa",
-        text: "Alternatif berada di batas terjauh jangkauan layanan TPA",
+        value: "pelayanan menengah",
+        text: "Pelayanan menengah",
     },
     {
-        value: "alternatif tidak berada di jangkauan tpa",
-        text: "Alternatif tidak berada di jangkauan TPA",
+        value: "pelayanan rendah",
+        text: "Pelayanan rendah",
     },
 ];
 
@@ -70,17 +78,17 @@ export const optionAksesibilitas: inputOption[] = [
         disabled: true,
     },
     {
-        value: "kondisi jalan bagus dan bisa dilewati kendaraan pengangkut sampah",
-        text: "Kondisi jalan bagus dan bisa dilewati kendaraan pengangkut sampah",
+        value: "sangat layak",
+        text: "Sangat Layak",
     },
     {
         value:
-            "kondisi jalan bagus, tetapi tidak bisa dilewati kendaraan pengangkut sampah atau jalan tidak bagus, tetapi bisa dilewati kendaraan pengangkut sampah",
-        text: "Kondisi jalan bagus, tetapi tidak bisa dilewati kendaraan pengangkut sampah atau jalan tidak bagus, tetapi bisa dilewati kendaraan pengangkut sampah",
+            "layak",
+        text: "Layak",
     },
     {
         value:
-            "kondisi jalan tidak bagus dan tidak bisa dilewati kendaraan pengangkut sampah",
-        text: "Kondisi jalan tidak bagus dan tidak bisa dilewati kendaraan pengangkut sampah",
+            "tidak layak",
+        text: "Tidak Layak",
     },
 ];
