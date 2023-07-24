@@ -6,9 +6,11 @@ import {useAppDispatch} from "../../../app/hooks";
 import {Loading} from "../../../components/atoms/Loading/Loading";
 import styles from "./style.module.css"
 import {HeaderText} from "../../../components/atoms/HeaderText/HeaderText";
-import {Badge, FormSelect, Table} from "react-bootstrap";
+import {Badge, Form, FormSelect, Table} from "react-bootstrap";
 import {ButtonSave} from "../../../components/atoms/ButtonSave/ButtonSave";
 import {fetchCriteria, updateCriteria} from "../store/thunk";
+import {TransformStream} from "stream/web";
+import {titleTable} from "../../../shared/helpers/helpers";
 
 export const Criteria: FC = () => {
     const state = useSelector((state: RootState) => state.criteriaState)
@@ -28,12 +30,11 @@ export const Criteria: FC = () => {
         "Cakupan Rumah",
         "Aksesibilitas"];
 
-    const options: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>, indexRow: number, indexCol: number) => {
-        let value = parseInt(event.target.value ?? 1)
-        dispatch(changeValueCriteria({value: value, indexCol: indexCol, indexRow: indexRow}))
-        // state.criteria.pairwise[indexCol][indexRow] = parseFloat((1 / tempValue).toFixed(3))
+    const handlerChange = (value: number, indexRow: number, indexCol: number) => {
+        if (value >= 0 && value <= 9) {
+            dispatch(changeValueCriteria({value: value, indexCol: indexCol, indexRow: indexRow}))
+        }
     }
 
     const handlerClick = () => {
@@ -76,14 +77,23 @@ export const Criteria: FC = () => {
                                 if (indexRow < indexCol) {
                                     return <td>
                                         <div>
-                                            <FormSelect value={state.criteria.pairwise![indexRow][indexCol]}
-                                                        onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {
-                                                            onChangeSelect(value, indexRow, indexCol)
-                                                        }}>
-                                                {options.map((option) => {
-                                                    return <option value={option} defaultValue={3}>{option}</option>
-                                                })}
-                                            </FormSelect>
+                                            <Form.Control type={"number"}
+                                                          value={state.criteria.pairwise![indexRow][indexCol]}
+
+                                                          onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
+                                                              let e: number = value.target.valueAsNumber  || 0
+                                                              handlerChange(e, indexRow, indexCol)
+                                                          }}/>
+                                            {/*<FormSelect value={state.criteria.pairwise![indexRow][indexCol]}*/}
+                                            {/*            onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {*/}
+                                            {/*                if (Number(value.target.value)  >= 0 && Number(value.target.value)  <= 9) {*/}
+                                            {/*                    onChange(value, indexRow, indexCol)*/}
+                                            {/*                }*/}
+                                            {/*            }}>*/}
+                                            {/*    {options.map((option) => {*/}
+                                            {/*        return <option value={option} defaultValue={3}>{option}</option>*/}
+                                            {/*    })}*/}
+                                            {/*</FormSelect>*/}
                                         </div>
                                     </td>
                                 }
@@ -99,6 +109,33 @@ export const Criteria: FC = () => {
                     })}
                     </tbody>
                 </Table>}
+
+            {state.loading ? <div className={"text-center"}><Loading width={400} height={400}></Loading></div> :
+                <div className={"col-lg-12 mt-5"}>
+
+                    <div style={{overflowY: "scroll", height: "50vh", display: "block"}}
+                         className={"shadow-sm p-4 border"}>
+                        <h5 className={"mb-4"}>Tabel Kriteria</h5>
+                        <Table bordered>
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Criteria</th>
+                                <th>Bobot Criteria</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {state.criteria.weights!.map((weight, index) => {
+                                return <tr>
+                                    <td>{index + 1}</td>
+                                    <td>{titleTable[index + 2]}</td>
+                                    <td>{weight.toPrecision(3)}</td>
+                                </tr>
+                            })}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>}
 
         </div>
         <ButtonSave text={"Save"} onClick={handlerClick}/>
