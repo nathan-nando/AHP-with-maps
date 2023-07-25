@@ -37,8 +37,9 @@ export const Criteria: FC = () => {
         }
     }
 
-    const handlerClick = () => {
-        dispatch(updateCriteria())
+    const handlerClick = async () => {
+        await dispatch(updateCriteria())
+        await dispatch(fetchCriteria())
     }
 
     return <>
@@ -81,7 +82,7 @@ export const Criteria: FC = () => {
                                                           value={state.criteria.pairwise![indexRow][indexCol]}
 
                                                           onChange={(value: React.ChangeEvent<HTMLInputElement>) => {
-                                                              let e: number = value.target.valueAsNumber  || 0
+                                                              let e: number = value.target.valueAsNumber || 0
                                                               handlerChange(e, indexRow, indexCol)
                                                           }}/>
                                             {/*<FormSelect value={state.criteria.pairwise![indexRow][indexCol]}*/}
@@ -108,14 +109,16 @@ export const Criteria: FC = () => {
                         </tr>
                     })}
                     </tbody>
+                    <div className={"pt-3 pb-5"}>
+                        <ButtonSave text={"Save"} onClick={handlerClick}/>
+                    </div>
                 </Table>}
 
             {state.loading ? <div className={"text-center"}><Loading width={400} height={400}></Loading></div> :
                 <div className={"col-lg-12 mt-5"}>
-
-                    <div style={{overflowY: "scroll", height: "50vh", display: "block"}}
-                         className={"shadow-sm p-4 border"}>
-                        <h5 className={"mb-4"}>Tabel Kriteria</h5>
+                    {state.criteria.weights ?<div style={{overflowY: "scroll", height: "50vh", display: "block"}}
+                                                  className={"shadow-sm p-4 border"}>
+                        <h5 className={"mb-4"}>Tabel Bobot Kriteria</h5>
                         <Table bordered>
                             <thead>
                             <tr>
@@ -134,11 +137,12 @@ export const Criteria: FC = () => {
                             })}
                             </tbody>
                         </Table>
-                    </div>
+                    </div> :<div></div>}
+
                 </div>}
 
         </div>
-        <ButtonSave text={"Save"} onClick={handlerClick}/>
+
     </>
 }
 

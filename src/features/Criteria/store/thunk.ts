@@ -26,6 +26,7 @@ export const updateCriteria = createAsyncThunk('criteria/updateCriteria', async 
     } catch (e) {
         return rejectWithValue({data: e as AxiosError})
     } finally {
+        // await dispatch(fetchCriteria())
         await dispatch(checkConsistency())
     }
 })
