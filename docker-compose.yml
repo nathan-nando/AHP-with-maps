@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  ahp-fe:
+    build: .
+    container_name: "ahp_name"
+    env_file:
+      - .env
+    volumes:
+      - ./build:/app/build
