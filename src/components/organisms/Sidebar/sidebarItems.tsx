@@ -8,12 +8,12 @@ type sidebar = {
 }
 
 export const sidebarItems:sidebar[] = [
-    {
-        display: "Dashboard",
-        icon: <i className={"bi bi-house-fill"}></i>,
-        to: "/dashboard",
-        section: "dashboard"
-    },
+    // {
+    //     display: "Dashboard",
+    //     icon: <i className={"bi bi-house-fill"}></i>,
+    //     to: "/dashboard",
+    //     section: "dashboard"
+    // },
     {
         display: "Criteria",
         icon: <i className={"bi bi-sticky-fill"}></i>,
