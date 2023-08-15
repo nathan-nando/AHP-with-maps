@@ -84,16 +84,6 @@ export const Criteria: FC = () => {
                                                               let e: number = value.target.valueAsNumber || 0
                                                               handlerChange(e, indexRow, indexCol)
                                                           }}/>
-                                            {/*<FormSelect value={state.criteria.pairwise![indexRow][indexCol]}*/}
-                                            {/*            onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {*/}
-                                            {/*                if (Number(value.target.value)  >= 0 && Number(value.target.value)  <= 9) {*/}
-                                            {/*                    onChange(value, indexRow, indexCol)*/}
-                                            {/*                }*/}
-                                            {/*            }}>*/}
-                                            {/*    {options.map((option) => {*/}
-                                            {/*        return <option value={option} defaultValue={3}>{option}</option>*/}
-                                            {/*    })}*/}
-                                            {/*</FormSelect>*/}
                                         </div>
                                     </td>
                                 }
