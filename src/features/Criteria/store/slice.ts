@@ -51,7 +51,6 @@ const slice = createSlice({
         builder.addCase(updateCriteria.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload
-
         })
 
         builder.addCase(checkConsistency.pending, (state) => {

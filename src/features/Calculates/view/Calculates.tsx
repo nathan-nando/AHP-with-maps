@@ -56,7 +56,7 @@ export const Calculates: FC = () => {
                 })}
 
             </Col>
-            <Col>
+            <Col className={styles.wrapper}>
                 <div className={"ms-5"}>
                     {collectionState.selectedCollection!.id ? <div className={"mx-auto col-lg-12"}>
                         <h5 className={"text-center mb-5"}>{collectionState.selectedCollection!.name}</h5>

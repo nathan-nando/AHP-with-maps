@@ -112,7 +112,7 @@ export const Alternatives: FC = () => {
             </Col>
             {collectionState.selectedCollection!.id ? <Col className={"mx-auto"}>{!isLoaded ? (
                 <div className={"mx-auto text-center"}><Loading/></div>) : (
-                <div className={"mx-auto col-lg-12"}>
+                <div className={"ms-5"}>
                     <h5 className={"text-center mb-5"}>{collectionState.selectedCollection!.name}</h5>
                     <div className={styles.cursor}>
                         <GoogleMap

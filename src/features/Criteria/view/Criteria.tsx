@@ -6,10 +6,9 @@ import {useAppDispatch} from "../../../app/hooks";
 import {Loading} from "../../../components/atoms/Loading/Loading";
 import styles from "./style.module.css"
 import {HeaderText} from "../../../components/atoms/HeaderText/HeaderText";
-import {Badge, Form, FormSelect, Table} from "react-bootstrap";
+import {Badge, Form, Table} from "react-bootstrap";
 import {ButtonSave} from "../../../components/atoms/ButtonSave/ButtonSave";
 import {fetchCriteria, updateCriteria} from "../store/thunk";
-import {TransformStream} from "stream/web";
 import {titleTable} from "../../../shared/helpers/helpers";
 
 export const Criteria: FC = () => {
