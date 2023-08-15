@@ -1,0 +1,11 @@
+.navSC{
+    background-color: var(--green-soft20);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navSC:hover{
+    background-color: #86c39b;
+}

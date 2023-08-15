@@ -12,3 +12,7 @@
     /*display: grid;*/
     height: 60vh;
 }
+
+.wrapper{
+    width: 50vw;
+}
