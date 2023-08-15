@@ -22,7 +22,7 @@ export const updateSubCriteria = createAsyncThunk('subCriteria/update', async (_
 }) => {
     const state = getState() as RootState
     try {
-        const res = await subCriteriaServices.updateSubCriteria({})
+        const res = await subCriteriaServices.updateSubCriteria(state.subCriteriaState.subCriteria)
         return res.data
     } catch (e) {
         rejectWithValue({data: e as AxiosError})
@@ -33,6 +33,7 @@ export const updateSubCriteria = createAsyncThunk('subCriteria/update', async (_
 export const checkConsistencySC = createAsyncThunk('subCriteria/checkCR', async (mode: string, {rejectWithValue}) => {
     try {
         const res = await subCriteriaServices.checkConsistencySubCriteria(mode)
+        console.log("CR SUB" + res.data.data)
         return res.data
     } catch (e) {
         return rejectWithValue({data: e as AxiosError})

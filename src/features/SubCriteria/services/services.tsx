@@ -12,7 +12,7 @@ class SubCriteriaServices{
     }
 
     checkConsistencySubCriteria(mode:string){
-        return api.get(`${endpoint.subCriteria}/check/${mode}"`)
+        return api.get(`${endpoint.subCriteria}/check/${mode}`)
     }
 }
 
